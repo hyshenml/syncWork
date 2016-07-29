@@ -2,6 +2,8 @@
 __author__ = 'sml'
 import os, time
 
+
+
 def today_midnight():
     now = time.time()
     midnight = now - (now % 86400) + time.timezone
