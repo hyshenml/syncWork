@@ -10,11 +10,11 @@ def today_midnight():
     return midnight
 
 import cPickle as pickle
-def pickle_save(x):
-    with open('./temp.pk1','wb') as f:
+def save_ob(x,type):
+    with open('./'+type+'.pk1','wb') as f:
         pickle.dump(x,f,True)
 
-def pickle_load():
-    with open('./temp.pk1','rb') as f:
+def load_ob(type):
+    with open('./'+type+'.pk1','rb') as f:
         return pickle.load(f)
 
