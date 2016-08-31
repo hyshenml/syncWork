@@ -12,18 +12,22 @@ class Searcher():
         self.copy_path=config.copy_path
 
 #find the doc have modified
-    def find_modified(self):
-        self.modi_docs=self._find_modified(self.file_path)
+    def find_modified(self,d=0):
+        self.modi_docs=self._find_modified(self.file_path,d)
 
-    def _find_modified(self,path):
+    def _find_modified(self,path,d):
         file_names=os.listdir(path)
         modi_docs=[]
         last_return_time=load_ob('last_return_time')
+
         for f in file_names:
             sub_file=path+'/'+f
+            print 'sub_file',sub_file
+            print 'filetime',os.path.getmtime(sub_file)
+            print 'midnight',today_midnight()-86400*d
             if os.path.isdir(sub_file):
-                modi_docs=modi_docs+self._find_modified(sub_file)
-            elif os.path.getmtime(sub_file)>today_midnight() and os.path.getmtime(sub_file)>last_return_time+1:
+                modi_docs=modi_docs+self._find_modified(sub_file,d)
+            elif os.path.getmtime(sub_file)>today_midnight()-86400*d and os.path.getmtime(sub_file)>last_return_time+1:
                 print self,sub_file
                 modi_docs=modi_docs+[Doc(sub_file)]
         return modi_docs

@@ -15,6 +15,10 @@ def save_ob(x,type):
         pickle.dump(x,f,True)
 
 def load_ob(type):
-    with open('./'+type+'.pk1','rb') as f:
-        return pickle.load(f)
+    try:
+        with open('./'+type+'.pk1','rb') as f:
+            return pickle.load(f)
+    except IOError,e:
+        return 0
+
 
