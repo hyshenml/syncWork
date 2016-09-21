@@ -4,7 +4,7 @@ from searcher import Searcher
 import config,os
 import sys
 try:
-    backdays=int(sys.argv[1])
+    backdays=int(raw_input('input back days:'))
 except ValueError,e:
     backdays=0
 except IndexError,e:
